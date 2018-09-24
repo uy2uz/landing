@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    
+    protected $table = "users";
+    protected $primaryKey = "id";
 
     /**
      * The attributes that are mass assignable.
@@ -26,5 +29,20 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+    
+    protected $casts = [
+        'id'            => 'integer',
+        'email'         => 'string',
+        'password'      => 'string',
+        'isAdmin'       => 'boolean',
+        'remeber_token' => 'string',
+        'created_at'    => 'datatime',
+        'updated_at'    => 'datatime'
+    ];
+    
+    protected $dates = [
+        'created_at',
+        'updated_at'
     ];
 }
