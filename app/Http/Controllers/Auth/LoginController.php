@@ -51,8 +51,8 @@ class LoginController extends Controller
             return redirect(route('account'))->with('success', trans('massages.auth.succesLogin'));
         }
         return back()->with('error', trans('messages.auth.errorLogin'));
-        
         }catch(ValidationException $e){
+            \Log::error($e->getMessage());
             return back()->with('error', trans('messages.auth.errorLogin'));
         }
     }
