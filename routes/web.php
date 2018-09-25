@@ -23,6 +23,12 @@ Route::group(['middelware' => 'guest'],function(){
 });
 Route::group(['middelware' => 'auth'],function(){
     Route::get('/my/account', 'AccountController@index')->name('account');
+    Route::get('/logout', function(){
+        \Auth::logout();
+        return redirect(route('login'));
+    })->name('logout');
+    
+    Route::get('/admin', 'Admin\AccountController@index')->name('admin');
     
 });
 
