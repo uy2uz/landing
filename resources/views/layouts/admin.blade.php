@@ -34,13 +34,13 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="/admin">
+                <a class="nav-link" href="{{route('admin')}}">
                   <span data-feather="home"></span>
                   Главная
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/categories">
+                <a class="nav-link" href="{{route('categories')}}">
                   <span data-feather="map"></span>
                   Категории
                 </a>
@@ -117,7 +117,7 @@
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
-
+    @include('inc.messages')
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
@@ -126,6 +126,7 @@
 
     <!-- Graphs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    
     <script>
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
@@ -155,5 +156,5 @@
         }
       });
     </script>
-  </body>
+</body>
 </html>
