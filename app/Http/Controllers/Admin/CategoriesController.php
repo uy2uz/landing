@@ -74,10 +74,10 @@ class CategoriesController extends Controller
     }
 
         public function deleteCategory(Request $request) {
-            dd($request);
+            
         if($request->ajax()){
             $id = (int)$request->input('id');
-            $objCategory = new Categore();
+            $objCategory = new Category();
             $objCategory->where('id', $id)->delete();
             echo 'success';
         }

@@ -36,7 +36,7 @@
                 let id = $(this).attr("rel");
                 $.ajax({
                     type: "DELETE",
-                    url: "{{route('categories.delete')}}",
+                    url: "{!!route('categories.delete')!!}",
                     data: {_token:"{{csrf_token()}}", id:id},
                     complete: function(){
                         alert("Категория удалена");

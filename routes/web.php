@@ -31,12 +31,19 @@ Route::group(['middleware' => 'auth'],function(){
 //Admin
     Route::group(['middleware' => 'admin', 'prefix' => 'admin'],function(){    
         Route::get('/admin', 'Admin\AccountController@index')->name('admin');
+        /*категории*/
         Route::get('/categories', 'Admin\CategoriesController@index')->name('categories');
         Route::get('/categories/add', 'Admin\CategoriesController@addCategory')->name('categories.add');
         Route::post('/categories/add', 'Admin\CategoriesController@addRequestCategory');
         Route::get('/categories/edit/{id}', 'Admin\CategoriesController@editCategory')->where('id','\d+')->name('categories.edit');
         Route::post('/categories/edit/{id}', 'Admin\CategoriesController@editRequestCategory')->where('id','\d+')->name('categories.edit');
-        Route::delete('categories/delete', 'AdminCategoriesController@deleteCategory')->name('categories.delete');
+        Route::delete('categories/delete', 'Admin\CategoriesController@deleteCategory')->name('categories.delete');
+        /*Статьи*/
+        Route::get('/articles', 'Admin\ArticlesController@index')->name('articles');
+        Route::get('/articles/add', 'Admin\ArticlesController@addArticle')->name('articles/add');
+        Route::post('/articles/add', 'Admin\ArticlesController@addRequestArticle');
+        Route::get('/articles/edit/{id}', 'Admin\ArticlesController@editArticle')->where('id','\d+')->name('articles.edit');
+        Route::delete('/articles/delete/', 'Admin\ArticlesController@deleteArticle');
     });
 });
 
