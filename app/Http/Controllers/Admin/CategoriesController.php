@@ -32,7 +32,7 @@ class CategoriesController extends Controller
                 'description' => $request->input('description')
             ]);
             if($objCategory){
-                return back()->with('success', 'Категория успешно создана');
+                return redirect()->route('categories')->with('success', "Категория {$request->title} успешно создана");
             }
             return back()->with('error', 'Ошибка, при создании категории');
         }catch(ValidationException $e){
@@ -63,7 +63,7 @@ class CategoriesController extends Controller
             $objCategory->description = $request->input('description');
             
             if($objCategory->save()){
-                return back()->with('success', 'Категория успешно отредактирована');
+                return redirect()->route('categories')->with('success', "Категория {$request->title} успешно отредактирована");
             }
             return route('categories')->with('error', 'Ошибка, при редактировании категории');
             
@@ -74,8 +74,12 @@ class CategoriesController extends Controller
     }
 
         public function deleteCategory(Request $request) {
+            dd($request);
         if($request->ajax()){
-            
+            $id = (int)$request->input('id');
+            $objCategory = new Categore();
+            $objCategory->where('id', $id)->delete();
+            echo 'success';
         }
     }
             
