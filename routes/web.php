@@ -40,10 +40,10 @@ Route::group(['middleware' => 'auth'],function(){
         Route::delete('categories/delete', 'Admin\CategoriesController@deleteCategory')->name('categories.delete');
         /*Статьи*/
         Route::get('/articles', 'Admin\ArticlesController@index')->name('articles');
-        Route::get('/articles/add', 'Admin\ArticlesController@addArticle')->name('articles/add');
+        Route::get('/articles/add', 'Admin\ArticlesController@addArticle')->name('articles.add');
         Route::post('/articles/add', 'Admin\ArticlesController@addRequestArticle');
         Route::get('/articles/edit/{id}', 'Admin\ArticlesController@editArticle')->where('id','\d+')->name('articles.edit');
-        Route::delete('/articles/delete/', 'Admin\ArticlesController@deleteArticle');
+        Route::delete('/articles/delete/', 'Admin\ArticlesController@deleteArticle')->name('articles.delete');;
     });
 });
 

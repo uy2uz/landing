@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h1>Добавить статью</h1>
         <br>
@@ -7,7 +8,7 @@
             {!!csrf_field()!!}
             <p>Выбор категории(ий):<br><select name="categories[]" class=form-control multiple>
                     @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->title}}</option>
+                        <option value="{{$category->id}}">{{$category->title}}</option>
                     @endforeach
             </select></p>
             <p>Название статьи:<br><input type="text" name="title" class="form-control" required></p>
