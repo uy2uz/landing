@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('/articles/add', 'Admin\ArticlesController@addArticle')->name('articles.add');
         Route::post('/articles/add', 'Admin\ArticlesController@addRequestArticle');
         Route::get('/articles/edit/{id}', 'Admin\ArticlesController@editArticle')->where('id','\d+')->name('articles.edit');
+        Route::post('/articles/edit/{id}', 'Admin\ArticlesController@editRequestArticle')->where('id','\d+');
         Route::delete('/articles/delete/', 'Admin\ArticlesController@deleteArticle')->name('articles.delete');;
     });
 });

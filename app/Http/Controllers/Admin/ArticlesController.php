@@ -57,14 +57,57 @@ class ArticlesController extends Controller
             if(!$objArticle){
                 return abort(404);
             }
-                                    
+            $mainCategories = $objArticle->categories;
+            $arrCategories = [];
+            foreach($mainCategories as $category){
+                $arrCategories[] = $category->id;
+            }
+            
             return view ('admin.articles.edit',[
                 'categories' => $categories,
-                'article' => $objArticle
+                'article' => $objArticle,
+                'arrCategories' => $arrCategories,
             ]);
     }
     
-    public function deleteArticle(Request $request){
+    public function editRequestArticle(int $id, ArticleRequest $request){
+        $objArticle = Article::find($id);
         
+        if(!$objArticle){
+            return abort(404);
+        }
+        $objArticle->title = $request->input('title');
+        $objArticle->author = $request->input('author');
+        $objArticle->short_text = $request->input('short_text');
+        $objArticle->full_text = $request->input('full_text');
+        
+        if($objArticle->save()){
+            //Обновляем категории
+            $objArticleCategory = new CategoryArticle();
+            $objArticleCategory->where('articles_id', $objArticle->id)->delete();
+            
+            $arrCategories = $request->input('categories');
+            if(is_array($arrCategories)){
+                foreach($arrCategories as $category){
+                    $objArticleCategory->create([
+                        'category_id' => $category,
+                        'articles_id' => $objArticle->id
+                    ]);
+                }
+            }
+            
+            return redirect()->route('articles')->with('success', 'Статья оновлена!');
+        }
+        return back()->with('error','Не удалось обновить статью!');
+    }
+
+
+    public function deleteArticle(Request $request){
+        if($request->ajax()){
+            $id = (int)$request->input('id');
+            $objArticle = new Article();
+            $objArticle->where('id', $id)->delete();
+            echo 'success';
+        }
     }
 }

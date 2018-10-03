@@ -18,4 +18,8 @@ class Article extends Model
     protected $dates = [
         'created_at', 'updatet_at'
     ];
+    //Relations
+    public function categories(){
+        return $this->belongsToMany(Category::class,'category-articles','articles_id', 'category_id');
+    }
 }
