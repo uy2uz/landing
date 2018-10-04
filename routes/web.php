@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'],function(){
         \Auth::logout();
         return redirect(route('login'));
     })->name('logout');
+    //Comments
+    Route::post('/comments/add', 'CommentsController@addComment')->name('comments.add');
 //Admin
     Route::group(['middleware' => 'admin', 'prefix' => 'admin'],function(){    
         Route::get('/admin', 'Admin\AccountController@index')->name('admin');
