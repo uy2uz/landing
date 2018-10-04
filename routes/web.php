@@ -10,10 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+//index blog
+Route::get('/', 'ArticlesController@index')->name('blog');
+//blog
+Route::get('/article/{id}/{slug}.html','ArticlesController@showArticle')->where('id', '\d')->name('blog.show');
 
 Route::group(['middleware' => 'guest'],function(){
     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -44,7 +44,10 @@ Route::group(['middleware' => 'auth'],function(){
         Route::post('/articles/add', 'Admin\ArticlesController@addRequestArticle');
         Route::get('/articles/edit/{id}', 'Admin\ArticlesController@editArticle')->where('id','\d+')->name('articles.edit');
         Route::post('/articles/edit/{id}', 'Admin\ArticlesController@editRequestArticle')->where('id','\d+');
-        Route::delete('/articles/delete/', 'Admin\ArticlesController@deleteArticle')->name('articles.delete');;
+        Route::delete('/articles/delete/', 'Admin\ArticlesController@deleteArticle')->name('articles.delete');
+        /*Пользователи*/
+        Route::get('/users', 'Admin\UsersController@index')->name('users');
+        Route::delete('/user/delete/', 'Admin\UsersController@deleteUser')->name('users.delete');
     });
 });
 
