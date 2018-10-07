@@ -50,6 +50,10 @@ Route::group(['middleware' => 'auth'],function(){
         /*Пользователи*/
         Route::get('/users', 'Admin\UsersController@index')->name('users');
         Route::delete('/user/delete/', 'Admin\UsersController@deleteUser')->name('users.delete');
+        /*Модерация кромментариев*/
+        Route::get('/comments', 'Admin\CommentsController@index')->name('comments');
+        Route::get('/comments/accepted/{id}', 'Admin\CommentsController@acceptComment')->where('id','\d+')->name('comment.accepted');
+        Route::delete('/comments/delete/', 'Admin\CommentsController@deleteComment')->name('comments.delete');
     });
 });
 

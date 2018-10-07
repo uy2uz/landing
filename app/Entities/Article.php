@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Entities\Comment;
 
 class Article extends Model
 {
@@ -21,5 +22,8 @@ class Article extends Model
     //Relations
     public function categories(){
         return $this->belongsToMany(Category::class,'category-articles','articles_id', 'category_id');
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class, 'articles_id', 'id');
     }
 }

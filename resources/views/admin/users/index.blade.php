@@ -3,7 +3,6 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h1>Список пользователей</h1>
         <br>
-        <br>
         <table class="table table-bordered">
             <tr>
                 <th>#</th>

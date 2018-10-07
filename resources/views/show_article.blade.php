@@ -28,21 +28,8 @@
           </div>
             <br>
             <br>
-            @if(\Auth::check())
-            <form method="post" action="{!!route('comments.add')!!}">
-                {!! csrf_field()!!}
-                <p>Комментарии:<br>
-                    <textarea class="form-control" name="comment"></textarea>
-                </p>
-                <br>
-                <button type="submit" class="btn btn-success">Добавить комментарий</button>
-                
-                
-                
-            </form>
-            @endif
-            
         </div>
+      @yield('comments')    
       </div>
     </article>
     <hr>
