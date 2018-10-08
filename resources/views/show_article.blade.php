@@ -29,7 +29,7 @@
             <br>
             <br>
         </div>
-      @yield('comments')    
+      @yield('comments')
       </div>
     </article>
     <hr>

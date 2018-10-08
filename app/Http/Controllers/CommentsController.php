@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Entities\Comment;
+use App\Http\Requests\CommentRequest;
 
 class CommentsController extends Controller
 {
-    public function addComment(Request $request){
+    public function addComment(CommentRequest $request){
         $comment =$request->input('comment');
         $articles_id = (int)$request->input('articles_id');
         $user_id = auth()->user()->id;
@@ -20,8 +20,8 @@ class CommentsController extends Controller
         ]);
         
         if($objComment){
-            return back();
+            return back()->with('success', 'Комментарий отправлен на модерацию.');
         }
-        return back();
+        return back()->with('error');
     }
 }

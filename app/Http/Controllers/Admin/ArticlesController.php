@@ -28,7 +28,7 @@ class ArticlesController extends Controller
         $objArticle = new Article();
         $objCategoryArticle = new CategoryArticle();
         
-        $objArticle = new Article();
+        //$objArticle = new Article();
         $objArticle = $objArticle->create([
             'title'      => $request->input('title'),
             'author'     => $request->input('author'),

@@ -1,4 +1,5 @@
-
+<!-- Оброботчик ошибок -->
+Подключен
 @if(session()->has('success'))
     <script type="text/javascript">
         $(function(){
